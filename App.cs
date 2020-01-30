@@ -24,7 +24,7 @@ namespace Behavioral.ChainOfResponsibility
                 chain.execute(warning.GetType().Name);
                 chain.execute(error.GetType().Name);
             } catch (Exception e) {
-                Console.WriteLine("Caught exception: %s \n", e.GetHashCode());
+                Console.WriteLine("Caught exception: {0} \n", e.GetHashCode());
             }
         }
     }
