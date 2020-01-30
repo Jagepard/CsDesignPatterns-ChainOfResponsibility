@@ -7,7 +7,7 @@ using System;
 
 namespace Behavioral.ChainOfResponsibility
 {
-    class App
+    class Program
     {
         static void Main(string[] args)
         {
