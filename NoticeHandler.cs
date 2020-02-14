@@ -7,9 +7,9 @@ using System;
 
 namespace Behavioral.ChainOfResponsibility
 {
-    public class NoticeHandler : HandlerInterface
+    public class NoticeHandler : IHandler
     {
-        public void execute()
+        public void Execute()
         {
             Console.WriteLine("{0}\n", this.GetType().Name);
         }

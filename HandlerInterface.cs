@@ -5,8 +5,8 @@
 
 namespace Behavioral.ChainOfResponsibility
 {
-    public interface HandlerInterface
+    public interface IHandler
     {
-        public void execute();
+        public void Execute();
     }
 }

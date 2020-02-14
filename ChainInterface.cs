@@ -5,9 +5,9 @@
 
 namespace Behavioral.ChainOfResponsibility
 {
-    public interface ChainInterface
+    public interface IChain
     {
-        void addToChain(HandlerInterface handler);
-        void execute(string handlerName);
+        void AddToChain(IHandlerInterface handler);
+        void Execute(string handlerName);
     }
 }
