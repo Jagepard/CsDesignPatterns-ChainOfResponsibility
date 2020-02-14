@@ -12,9 +12,9 @@ namespace Behavioral.ChainOfResponsibility
         private static void Main(string[] args)
         {
             IChain chain = new Chain();
-            IHandlerInterface notice = new NoticeHandler();
-            IHandlerInterface warning = new WarningHandler();
-            IHandlerInterface error = new ErrorHandler();
+            IHandler notice = new NoticeHandler();
+            IHandler warning = new WarningHandler();
+            IHandler error = new ErrorHandler();
 
             try
             {
