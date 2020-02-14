@@ -10,31 +10,31 @@ namespace Behavioral.ChainOfResponsibility
 {
     public class Chain : IChain
     {
-        IDictionary<string, IHandlerInterface> chain = new Dictionary<string, IHandlerInterface>();
+        private readonly IDictionary<string, IHandler> chain = new Dictionary<string, IHandler>();
 
-        public void AddToChain(IHandlerInterface handler)
+        public void AddToChain(IHandler handler)
         {
             string handlerName = handler.GetType().Name;
 
-            if (this.chain.ContainsKey(handlerName)) {
+            if (chain.ContainsKey(handlerName)) {
                 throw new Exception();
             }
 
-            this.chain.Add(handlerName, handler);
+            chain.Add(handlerName, handler);
         }
 
         public void Execute(String handlerName)
         {
-            if (this.chain.Count == 0) {
+            if (chain.Count == 0) {
                 throw new Exception();
             }
 
-            if (this.chain.ContainsKey(handlerName)) {
-                foreach(KeyValuePair<string, IHandlerInterface> entry in this.chain)
+            if (chain.ContainsKey(handlerName)) {
+                foreach(KeyValuePair<string, IHandler> entry in chain)
                 {
-                    IHandlerInterface handler = entry.Value;
+                    IHandler handler = entry.Value;
 
-                    handler.execute();
+                    handler.Execute();
                 
                     if (handler.GetType().Name == handlerName) {
                         return;
