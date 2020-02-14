@@ -8,11 +8,11 @@ using System.Collections.Generic;
 
 namespace Behavioral.ChainOfResponsibility
 {
-    public class Chain : ChainInterface
+    public class Chain : IChain
     {
-        IDictionary<string, HandlerInterface> chain = new Dictionary<string, HandlerInterface>();
+        IDictionary<string, IHandlerInterface> chain = new Dictionary<string, IHandlerInterface>();
 
-        public void addToChain(HandlerInterface handler)
+        public void AddToChain(IHandlerInterface handler)
         {
             string handlerName = handler.GetType().Name;
 
@@ -23,16 +23,16 @@ namespace Behavioral.ChainOfResponsibility
             this.chain.Add(handlerName, handler);
         }
 
-        public void execute(String handlerName)
+        public void Execute(String handlerName)
         {
             if (this.chain.Count == 0) {
                 throw new Exception();
             }
 
             if (this.chain.ContainsKey(handlerName)) {
-                foreach(KeyValuePair<string, HandlerInterface> entry in this.chain)
+                foreach(KeyValuePair<string, IHandlerInterface> entry in this.chain)
                 {
-                    HandlerInterface handler = entry.Value;
+                    IHandlerInterface handler = entry.Value;
 
                     handler.execute();
                 

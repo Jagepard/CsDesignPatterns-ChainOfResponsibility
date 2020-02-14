@@ -7,22 +7,23 @@ using System;
 
 namespace Behavioral.ChainOfResponsibility
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            ChainInterface chain = new Chain();
-            HandlerInterface notice = new NoticeHandler();
-            HandlerInterface warning = new WarningHandler();
-            HandlerInterface error = new ErrorHandler();
+            IChain chain = new Chain();
+            IHandlerInterface notice = new NoticeHandler();
+            IHandlerInterface warning = new WarningHandler();
+            IHandlerInterface error = new ErrorHandler();
 
-            try {
-                chain.addToChain(notice);
-                chain.addToChain(warning);
-                chain.addToChain(error);
-                chain.execute(notice.GetType().Name);
-                chain.execute(warning.GetType().Name);
-                chain.execute(error.GetType().Name);
+            try
+            {
+                chain.AddToChain(notice);
+                chain.AddToChain(warning);
+                chain.AddToChain(error);
+                chain.Execute(notice.GetType().Name);
+                chain.Execute(warning.GetType().Name);
+                chain.Execute(error.GetType().Name);
             } catch (Exception e) {
                 Console.WriteLine("Caught exception: {0} \n", e.GetHashCode());
             }
