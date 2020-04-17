@@ -7,7 +7,6 @@ namespace Behavioral.ChainOfResponsibility
 {
     public interface IChain
     {
-        void AddToChain(IHandler handler);
-        void Execute(string handlerName);
+        void Execute(string request);
     }
 }

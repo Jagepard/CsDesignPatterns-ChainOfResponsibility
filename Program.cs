@@ -3,6 +3,7 @@
  * @license https://mit-license.org/ MIT
  */
 
+using CsDesignPatterns_ChainOfResponsibility;
 using System;
 
 namespace Behavioral.ChainOfResponsibility
@@ -11,19 +12,17 @@ namespace Behavioral.ChainOfResponsibility
     {
         private static void Main(string[] args)
         {
-            IChain chain = new Chain();
-            IHandler notice = new NoticeHandler();
-            IHandler warning = new WarningHandler();
-            IHandler error = new ErrorHandler();
+            AbstractHandler notice = new NoticeHandler();
+            AbstractHandler warning = new WarningHandler();
+            AbstractHandler error = new ErrorHandler();
 
             try
             {
-                chain.AddToChain(notice);
-                chain.AddToChain(warning);
-                chain.AddToChain(error);
-                chain.Execute(notice.GetType().Name);
-                chain.Execute(warning.GetType().Name);
-                chain.Execute(error.GetType().Name);
+                notice.SetNext(warning).SetNext(error);
+
+                notice.Execute(notice.GetType().Name);
+                notice.Execute(warning.GetType().Name);
+                notice.Execute(error.GetType().Name);
             } catch (Exception e) {
                 Console.WriteLine("Caught exception: {0} \n", e.GetHashCode());
             }

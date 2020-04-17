@@ -3,15 +3,12 @@
  * @license https://mit-license.org/ MIT
  */
 
+using CsDesignPatterns_ChainOfResponsibility;
 using System;
 
 namespace Behavioral.ChainOfResponsibility
 {
-    public class NoticeHandler : IHandler
+    public class NoticeHandler : AbstractHandler
     {
-        public void Execute()
-        {
-            Console.WriteLine("{0}\n", this.GetType().Name);
-        }
     }
 }
