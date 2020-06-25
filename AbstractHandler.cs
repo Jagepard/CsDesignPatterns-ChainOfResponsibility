@@ -10,7 +10,7 @@ namespace CsDesignPatterns_ChainOfResponsibility
 {
     public abstract class AbstractHandler : IChain
     {
-        protected AbstractHandler nextHandler;
+        private AbstractHandler _nextHandler;
 
         public void Execute(string request)
         {
@@ -20,21 +20,17 @@ namespace CsDesignPatterns_ChainOfResponsibility
                 return;
             }
 
-            if (nextHandler == null)
+            if (_nextHandler == null)
             {
                 throw new Exception();
             }
 
-            nextHandler.Execute(request);
+            _nextHandler.Execute(request);
         }
 
-        /**
-         * @param nextHandler
-         * @return
-         */
         public AbstractHandler SetNext(AbstractHandler nextHandler)
         {
-            this.nextHandler = nextHandler;
+            this._nextHandler = nextHandler;
             return nextHandler;
         }
     }
