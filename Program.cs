@@ -12,16 +12,13 @@ namespace Behavioral.ChainOfResponsibility
     {
         private static void Main(string[] args)
         {
-            AbstractHandler notice  = new NoticeHandler();
-            AbstractHandler warning = new WarningHandler();
-            AbstractHandler error   = new ErrorHandler();
-
             try
             {
-                notice.SetNext(warning).SetNext(error);
-                notice.Execute(notice.GetType().Name);
-                notice.Execute(warning.GetType().Name);
-                notice.Execute(error.GetType().Name);
+                AbstractHandler firstElementInTheChain = new NoticeHandler(); 
+                firstElementInTheChain.SetNext(new WarningHandler()).SetNext(new ErrorHandler());
+                firstElementInTheChain.Execute("NoticeHandler");
+                firstElementInTheChain.Execute("WarningHandler");
+                firstElementInTheChain.Execute("ErrorHandler");
             } catch (Exception e) {
                 Console.WriteLine("Caught exception: {0} \n", e.GetHashCode());
             }
