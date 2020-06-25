@@ -8,18 +8,17 @@ using System;
 
 namespace Behavioral.ChainOfResponsibility
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main(string[] args)
         {
-            AbstractHandler notice = new NoticeHandler();
+            AbstractHandler notice  = new NoticeHandler();
             AbstractHandler warning = new WarningHandler();
-            AbstractHandler error = new ErrorHandler();
+            AbstractHandler error   = new ErrorHandler();
 
             try
             {
                 notice.SetNext(warning).SetNext(error);
-
                 notice.Execute(notice.GetType().Name);
                 notice.Execute(warning.GetType().Name);
                 notice.Execute(error.GetType().Name);
